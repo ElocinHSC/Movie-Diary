@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/output.css" />
+    <title>Movie Diary</title>
+  </head>
+  <body class="bg-ink">
+    <header class="bg-surface">
+      <a href="index.html">
+        <h1>Movie Diary</h1>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Discover</a></li>
+          <li><a href="diary.html">Diary</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <h2>Discover something worth watching</h2>
+        <form>
+          <label for="search">Search for a movie</label>
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search a film ..."
+          />
+          <button type="submit" aria-label="Search"></button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Popular Movies</h2>
+        <div class="movie-container"></div>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>

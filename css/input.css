@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---------------------------------------------------------------------
+     Farben — Basis (Hintergrund-Ebenen)
+     --------------------------------------------------------------------- */
+  --color-ink: oklch(0.16 0.02 290); /* Seitenhintergrund */
+  --color-surface: oklch(0.22 0.025 290); /* Karten-Hintergrund */
+  --color-surface-raised: oklch(0.27 0.03 290); /* Hover / erhöhte Elemente */
+  --color-surface-sunken: oklch(
+    0.19 0.02 290
+  ); /* Notizfeld, eingelassene Bereiche */
+
+  /* ---------------------------------------------------------------------
+     Farben — Text
+     --------------------------------------------------------------------- */
+  --color-text-primary: oklch(0.96 0.01 90); /* Titel, Haupttext */
+  --color-text-secondary: oklch(0.72 0.015 290); /* Jahr, Meta-Infos */
+  --color-text-muted: oklch(0.55 0.015 290); /* Platzhalter, Hilfetexte */
+
+  /* ---------------------------------------------------------------------
+     Farben — Akzente
+     --------------------------------------------------------------------- */
+  --color-marquee: oklch(
+    0.78 0.15 70
+  ); /* Amber — primäre Aktionen (Speichern, CTA) */
+  --color-marquee-hover: oklch(0.83 0.15 70);
+  --color-marquee-muted: oklch(
+    0.78 0.15 70 / 0.15
+  ); /* Badge-Hintergrund etc. */
+
+  --color-cine: oklch(0.72 0.09 200); /* Cyan — Rating, Sekundär-Akzent */
+  --color-cine-muted: oklch(0.72 0.09 200 / 0.15);
+
+  --color-danger: oklch(0.65 0.18 25); /* Löschen-Button (Hover) */
+  --color-danger-muted: oklch(0.65 0.18 25 / 0.15);
+
+  /* ---------------------------------------------------------------------
+     Typografie — Rollen (fluid, clamp-basiert wie bei SK Builders)
+     --------------------------------------------------------------------- */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
+
+  --text-hero: clamp(2.25rem, 1.7rem + 2.2vw, 3.5rem); /* Seitentitel / Hero */
+  --text-h1: clamp(
+    1.75rem,
+    1.4rem + 1.4vw,
+    2.5rem
+  ); /* z.B. "Deine Favoriten" */
+  --text-h2: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem); /* Filmtitel auf Karte */
+  --text-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --text-body: 1rem; /* Standard-Fließtext, UI-Labels */
+  --text-small: 0.875rem; /* Meta-Infos, Genre-Tags */
+  --text-micro: 0.75rem; /* Timestamps, Feinschrift */
+
+  --font-weight-display: 500; /* Fraunces wirkt bei 500 schon präsent, 700 wird zu schwer */
+  --font-weight-body: 400;
+  --font-weight-label: 600; /* Buttons, Badges */
+
+  --line-height-heading: 1.15;
+  --line-height-body: 1.6;
+
+  /* ---------------------------------------------------------------------
+     Radius — bewusst uneinheitlich (kein "ein Radius für alles")
+     --------------------------------------------------------------------- */
+  --radius-card: 0.75rem; /* Filmkarten — spürbar, aber nicht verspielt */
+  --radius-control: 0.375rem; /* Buttons, Inputs — knapper, wirkt funktional */
+  --radius-pill: 999px; /* Genre-Tags, Badges */
+
+  /* ---------------------------------------------------------------------
+     Schatten — getönt statt neutralgrau (an --color-ink angelehnt)
+     --------------------------------------------------------------------- */
+  --shadow-card:
+    0 1px 2px oklch(0.1 0.02 290 / 0.4), 0 8px 20px oklch(0.1 0.02 290 / 0.35);
+  --shadow-card-hover:
+    0 4px 8px oklch(0.1 0.02 290 / 0.5), 0 16px 32px oklch(0.1 0.02 290 / 0.45);
+
+  /* ---------------------------------------------------------------------
+     Übergänge
+     --------------------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-standard: 250ms;
+}
+
+/* ==========================================================================
+   Basis-Anwendung der Tokens
+   ========================================================================== */
+body {
+  background-color: var(--color-ink);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: var(--line-height-body);
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  line-height: var(--line-height-heading);
+  font-weight: var(--font-weight-display);
+}

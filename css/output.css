@@ -168,6 +168,9 @@
   }
 }
 @layer utilities {
+  .hidden {
+    display: none;
+  }
   .bg-ink {
     background-color: var(--color-ink);
   }

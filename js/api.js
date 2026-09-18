@@ -16,7 +16,7 @@ export async function getPopularMovies() {
     );
 
     if (!response.ok) {
-      throw new Error("Something went wrong");
+      throw new Error("Failed to fetch popular movies");
     }
 
     const data = await response.json();
@@ -24,6 +24,7 @@ export async function getPopularMovies() {
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 
@@ -43,7 +44,7 @@ export async function getMovieGenres() {
     );
 
     if (!response.ok) {
-      throw new Error("Something went wrong");
+      throw new Error("Failed to fetch movie genres");
     }
 
     const data = await response.json();
@@ -51,5 +52,6 @@ export async function getMovieGenres() {
     return data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }

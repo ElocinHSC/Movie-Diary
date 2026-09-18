@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --max-width-page: 1600px;
   /* ---------------------------------------------------------------------
      Farben — Basis (Hintergrund-Ebenen)
      --------------------------------------------------------------------- */
@@ -36,7 +37,7 @@
   --color-danger-muted: oklch(0.65 0.18 25 / 0.15);
 
   /* ---------------------------------------------------------------------
-     Typografie — Rollen (fluid, clamp-basiert wie bei SK Builders)
+     Typografie 
      --------------------------------------------------------------------- */
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
@@ -61,7 +62,7 @@
   --line-height-body: 1.6;
 
   /* ---------------------------------------------------------------------
-     Radius — bewusst uneinheitlich (kein "ein Radius für alles")
+     Radius — bewusst uneinheitlich 
      --------------------------------------------------------------------- */
   --radius-card: 0.75rem; /* Filmkarten — spürbar, aber nicht verspielt */
   --radius-control: 0.375rem; /* Buttons, Inputs — knapper, wirkt funktional */
@@ -83,6 +84,24 @@
   --duration-standard: 250ms;
 }
 
+/* ---------------------------------------------------------------------
+     Fonts
+     --------------------------------------------------------------------- */
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree/Figtree-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
 /* ==========================================================================
    Basis-Anwendung der Tokens
    ========================================================================== */

@@ -1,10 +1,19 @@
 import { deleteMovie, getSavedMovies, updateMovie } from "./storage.js";
-import { createMovieCard } from "./cards.js";
+import { createMovieCard, renderMessage } from "./cards.js";
 
 const diaryContainer = document.querySelector("#diary-container");
 
 function loadDiaryMovies() {
   const savedMovies = getSavedMovies();
+
+  if (savedMovies.length === 0) {
+    renderMessage(
+      diaryContainer,
+      "No movies saved yet. Go add some from Discover!",
+    );
+    return;
+  }
+
   const fragment = document.createDocumentFragment();
 
   savedMovies.forEach((movie) => {
@@ -15,6 +24,13 @@ function loadDiaryMovies() {
     removeButton.addEventListener("click", () => {
       deleteMovie(movie.id);
       diaryCard.remove();
+
+      if (diaryContainer.children.length === 0) {
+        renderMessage(
+          diaryContainer,
+          "No movies saved yet. Go add some from Discover!",
+        );
+      }
     });
 
     const noteContainer = document.createElement("div");

@@ -1,4 +1,5 @@
 /*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
+@layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -7,16 +8,32 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --spacing: 0.25rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --max-width-page: 1600px;
     --color-ink: oklch(0.16 0.02 290);
     --color-surface: oklch(0.22 0.025 290);
     --color-text-primary: oklch(0.96 0.01 90);
+    --color-text-secondary: oklch(0.72 0.015 290);
+    --color-marquee: oklch(
+    0.78 0.15 70
+  );
+    --color-marquee-hover: oklch(0.83 0.15 70);
+    --color-cine: oklch(0.72 0.09 200);
     --font-display: "Fraunces", ui-serif, Georgia, serif;
     --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
+    --text-h2: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+    --text-small: 0.875rem;
     --font-weight-display: 500;
+    --font-weight-label: 600;
     --line-height-heading: 1.15;
     --line-height-body: 1.6;
+    --radius-card: 0.75rem;
+    --radius-control: 0.375rem;
   }
 }
 @layer base {
@@ -168,15 +185,178 @@
   }
 }
 @layer utilities {
-  .hidden {
-    display: none;
+  .static {
+    position: static;
+  }
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+  .flex {
+    display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .aspect-2\/3 {
+    aspect-ratio: 2/3;
+  }
+  .aspect-\[2\/3\] {
+    aspect-ratio: 2/3;
+  }
+  .w-full {
+    width: 100%;
+  }
+  .max-w-page {
+    max-width: var(--max-width-page);
+  }
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .gap-1 {
+    gap: var(--spacing);
+  }
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-6 {
+    gap: calc(var(--spacing) * 6);
+  }
+  :where(.space-y-2 > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+    margin-block-start: calc(calc(var(--spacing) * 2) * var(--tw-space-y-reverse));
+    margin-block-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  .rounded-card {
+    border-radius: var(--radius-card);
+  }
+  .rounded-control {
+    border-radius: var(--radius-control);
   }
   .bg-ink {
     background-color: var(--color-ink);
   }
+  .bg-marquee {
+    background-color: var(--color-marquee);
+  }
+  .bg-red-500 {
+    background-color: var(--color-red-500);
+  }
   .bg-surface {
     background-color: var(--color-surface);
   }
+  .object-cover {
+    object-fit: cover;
+  }
+  .p-4 {
+    padding: calc(var(--spacing) * 4);
+  }
+  .px-6 {
+    padding-inline: calc(var(--spacing) * 6);
+  }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+  .py-4 {
+    padding-block: calc(var(--spacing) * 4);
+  }
+  .py-8 {
+    padding-block: calc(var(--spacing) * 8);
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-h2 {
+    font-size: var(--text-h2);
+  }
+  .text-small {
+    font-size: var(--text-small);
+  }
+  .font-label {
+    --tw-font-weight: var(--font-weight-label);
+    font-weight: var(--font-weight-label);
+  }
+  .text-cine {
+    color: var(--color-cine);
+  }
+  .text-ink {
+    color: var(--color-ink);
+  }
+  .text-text-secondary {
+    color: var(--color-text-secondary);
+  }
+  .shadow-card {
+    --tw-shadow: 0 1px 2px var(--tw-shadow-color, oklch(0.1 0.02 290 / 0.4)), 0 8px 20px var(--tw-shadow-color, oklch(0.1 0.02 290 / 0.35));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .transition-transform {
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  @media (hover: hover) {
+    .hover\:scale-\[1\.02\]:hover {
+      scale: 1.02;
+    }
+    .hover\:bg-marquee-hover:hover {
+      background-color: var(--color-marquee-hover);
+    }
+    .hover\:text-text-primary:hover {
+      color: var(--color-text-primary);
+    }
+    .hover\:shadow-card-hover:hover {
+      --tw-shadow: 0 4px 8px var(--tw-shadow-color, oklch(0.1 0.02 290 / 0.5)), 0 16px 32px var(--tw-shadow-color, oklch(0.1 0.02 290 / 0.45));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
+  }
+  @media (width >= 48rem) {
+    .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (width >= 64rem) {
+    .lg\:grid-cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree/Figtree-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
 }
 body {
   background-color: var(--color-ink);
@@ -188,4 +368,100 @@ h1, h2, h3, .font-display {
   font-family: var(--font-display);
   line-height: var(--line-height-heading);
   font-weight: var(--font-weight-display);
+}
+@property --tw-space-y-reverse {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-space-y-reverse: 0;
+      --tw-font-weight: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+    }
+  }
 }

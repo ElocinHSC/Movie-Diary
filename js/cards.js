@@ -23,13 +23,13 @@ export function createMovieCard(movie, genreNames) {
   year.textContent = movie.release_date ? movie.release_date.slice(0, 4) : "";
 
   const rating = card.querySelector(".movie-card__rating");
-  rating.textContent = Math.round(movie.vote_average * 10) / 10;
+  rating.textContent = `★ ${Math.round(movie.vote_average * 10) / 10}`;
 
   const description = card.querySelector(".movie-card__description");
   description.textContent = movie.overview;
 
   const genres = card.querySelector(".movie-card__genres");
-  genreNames.forEach((genreName) => {
+  (genreNames || []).forEach((genreName) => {
     const genre = document.createElement("span");
     genre.classList.add("genre-tag");
     genre.textContent = genreName;
@@ -42,6 +42,7 @@ export function createMovieCard(movie, genreNames) {
 export function renderMessage(container, text) {
   container.innerHTML = "";
   const message = document.createElement("p");
+  message.classList.add("empty-state");
   message.textContent = text;
   container.appendChild(message);
 }

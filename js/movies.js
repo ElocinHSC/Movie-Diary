@@ -68,23 +68,29 @@ function renderMovies(movies, genres, query) {
   if (movies.length === 0) {
     movieContainer.innerHTML = "";
     const message = document.createElement("p");
-    message.textContent = `No movies found for "${query}".`;
+    message.classList.add("empty-state");
+    message.textContent = query
+      ? `No movies found for "${query}".`
+      : "No movies available.";
     movieContainer.appendChild(message);
     return;
   }
 
   movieContainer.innerHTML = "";
   const fragment = document.createDocumentFragment();
-  const saveIds = getSavedMovies().map((saveMovie) => saveMovie.id);
+  const saveIds = getSavedMovies().map((movie) => movie.id);
 
   movies.forEach((movie) => {
     const genreNames = resolveGenreNames(movie.genre_ids, genres);
     const movieCard = createMovieCard(movie, genreNames);
 
     const addButton = document.createElement("button");
+    addButton.classList.add("mt-2");
     setAddButtonState(addButton, movie, genreNames, saveIds.includes(movie.id));
 
-    movieCard.appendChild(addButton);
+    const actions = movieCard.querySelector(".movie-card__actions");
+    actions.appendChild(addButton);
+
     fragment.appendChild(movieCard);
   });
 
@@ -93,7 +99,14 @@ function renderMovies(movies, genres, query) {
 
 function setAddButtonState(button, movie, genreNames, initiallySaved) {
   let isSaved = initiallySaved;
-  button.textContent = isSaved ? "Remove from Diary" : "Add to Diary";
+
+  function updateButton() {
+    button.textContent = isSaved ? "Remove from Diary" : "Add to Diary";
+    button.classList.toggle("btn-primary", !isSaved);
+    button.classList.toggle("btn-danger", isSaved);
+  }
+
+  updateButton();
 
   button.addEventListener("click", () => {
     if (isSaved) {
@@ -103,6 +116,6 @@ function setAddButtonState(button, movie, genreNames, initiallySaved) {
       saveMovie(movie, genreNames);
       isSaved = true;
     }
-    button.textContent = isSaved ? "Remove from Diary" : "Add to Diary";
+    updateButton();
   });
 }

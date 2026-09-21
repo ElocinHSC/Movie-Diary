@@ -20,6 +20,7 @@ function loadDiaryMovies() {
     const diaryCard = createMovieCard(movie, movie.genres);
 
     const removeButton = document.createElement("button");
+    removeButton.classList.add("btn-danger", "mt-2");
     removeButton.textContent = "Remove from Diary";
     removeButton.addEventListener("click", () => {
       deleteMovie(movie.id);
@@ -34,10 +35,13 @@ function loadDiaryMovies() {
     });
 
     const noteContainer = document.createElement("div");
+    noteContainer.classList.add("space-y-3");
     renderNote(movie, noteContainer);
 
-    diaryCard.appendChild(removeButton);
-    diaryCard.appendChild(noteContainer);
+    const actions = diaryCard.querySelector(".movie-card__actions");
+
+    actions.appendChild(noteContainer);
+    actions.appendChild(removeButton);
     fragment.appendChild(diaryCard);
   });
   diaryContainer.appendChild(fragment);
@@ -51,6 +55,9 @@ function openNoteEditor(movie, noteContainer) {
   const noteInput = document.createElement("textarea");
   const saveNote = document.createElement("button");
   const cancelNote = document.createElement("button");
+  noteInput.classList.add("note-textarea");
+  saveNote.classList.add("btn-primary", "flex-1", "w-auto");
+  cancelNote.classList.add("btn-note", "flex-1", "w-auto");
 
   noteInput.value = movie.note || "";
   noteInput.placeholder = "What did you think?";
@@ -58,9 +65,14 @@ function openNoteEditor(movie, noteContainer) {
   saveNote.textContent = "Save Note";
   cancelNote.textContent = "Cancel";
 
+  const noteActions = document.createElement("div");
+  noteActions.classList.add("flex", "gap-2");
+
+  noteActions.appendChild(saveNote);
+  noteActions.appendChild(cancelNote);
+
   noteContainer.appendChild(noteInput);
-  noteContainer.appendChild(saveNote);
-  noteContainer.appendChild(cancelNote);
+  noteContainer.appendChild(noteActions);
 
   noteInput.focus();
 
@@ -94,6 +106,7 @@ function renderNote(movie, noteContainer) {
 
   if (!movie.note) {
     const noteButton = document.createElement("button");
+    noteButton.classList.add("btn-note");
     noteButton.textContent = "Add Note";
 
     noteButton.addEventListener("click", () => {
@@ -103,9 +116,18 @@ function renderNote(movie, noteContainer) {
     noteContainer.appendChild(noteButton);
   } else {
     const noteText = document.createElement("p");
+    noteText.classList.add(
+      "text-small",
+      "text-text-secondary",
+      "italic",
+      "bg-surface-sunken",
+      "rounded-control",
+      "p-3",
+    );
     noteText.textContent = movie.note;
 
     const editButton = document.createElement("button");
+    editButton.classList.add("btn-note");
     editButton.textContent = "Edit Note";
 
     editButton.addEventListener("click", () => {

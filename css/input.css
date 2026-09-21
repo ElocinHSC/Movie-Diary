@@ -26,9 +26,6 @@
     0.78 0.15 70
   ); /* Amber — primäre Aktionen (Speichern, CTA) */
   --color-marquee-hover: oklch(0.83 0.15 70);
-  --color-marquee-muted: oklch(
-    0.78 0.15 70 / 0.15
-  ); /* Badge-Hintergrund etc. */
 
   --color-cine: oklch(0.72 0.09 200); /* Cyan — Rating, Sekundär-Akzent */
   --color-cine-muted: oklch(0.72 0.09 200 / 0.15);
@@ -42,20 +39,19 @@
   --font-display: "Fraunces", ui-serif, Georgia, serif;
   --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
 
-  --text-hero: clamp(2.25rem, 1.7rem + 2.2vw, 3.5rem); /* Seitentitel / Hero */
+  /*--text-hero: clamp(2.25rem, 1.7rem + 2.2vw, 3.5rem); /* Seitentitel / Hero */
   --text-h1: clamp(
     1.75rem,
     1.4rem + 1.4vw,
     2.5rem
   ); /* z.B. "Deine Favoriten" */
   --text-h2: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem); /* Filmtitel auf Karte */
-  --text-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
-  --text-body: 1rem; /* Standard-Fließtext, UI-Labels */
+  /*--text-body: 1rem; /* Standard-Fließtext, UI-Labels */
   --text-small: 0.875rem; /* Meta-Infos, Genre-Tags */
   --text-micro: 0.75rem; /* Timestamps, Feinschrift */
 
   --font-weight-display: 500; /* Fraunces wirkt bei 500 schon präsent, 700 wird zu schwer */
-  --font-weight-body: 400;
+  /*--font-weight-body: 400;
   --font-weight-label: 600; /* Buttons, Badges */
 
   --line-height-heading: 1.15;
@@ -102,10 +98,59 @@
   font-weight: 100 900;
   font-style: normal;
 }
+
+@layer components {
+  .nav-link {
+    @apply text-text-secondary hover:text-text-primary transition-colors duration-fast ease-standard;
+  }
+
+  .movie-card {
+    @apply bg-surface rounded-card overflow-hidden shadow-card
+           hover:shadow-card-hover hover:scale-[1.02]
+           transition-transform duration-standard ease-standard;
+  }
+
+  .genre-tag {
+    @apply bg-cine-muted text-cine rounded-pill text-micro px-2 py-1;
+  }
+
+  .btn-primary {
+    @apply w-full bg-marquee hover:bg-marquee-hover text-ink
+           font-medium rounded-control py-2 transition-colors duration-fast ease-standard;
+  }
+
+  .btn-danger {
+    @apply w-full bg-transparent border border-danger text-danger
+           hover:bg-danger-muted rounded-control py-2 transition-colors duration-fast ease-standard;
+  }
+
+  .btn-note {
+    @apply w-full bg-cine-muted text-cine border border-cine/30
+          hover:bg-cine/20 rounded-control py-2 transition-colors duration-fast ease-standard;
+  }
+
+  .search-input {
+    @apply bg-surface-sunken text-text-primary placeholder-text-muted
+           rounded-control px-4 py-2 w-full border border-transparent
+           focus:border-marquee focus:outline-none;
+  }
+
+  .note-textarea {
+    @apply bg-surface-sunken text-text-primary placeholder-text-muted
+           rounded-control p-3 w-full text-small resize-none;
+  }
+
+  .empty-state {
+    @apply text-text-muted text-center py-16 col-span-full;
+  }
+}
 /* ==========================================================================
    Basis-Anwendung der Tokens
    ========================================================================== */
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-ink);
   color: var(--color-text-primary);
   font-family: var(--font-body);

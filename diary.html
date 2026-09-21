@@ -6,25 +6,56 @@
     <link rel="stylesheet" href="css/output.css" />
     <title>Diary</title>
   </head>
-  <body class="bg-ink">
-    <header class="bg-surface">
-      <a href="index.html">
-        <h1>Movie Diary</h1>
-      </a>
-      <nav>
-        <ul>
-          <li><a href="index.html">Discover</a></li>
-          <li><a href="diary.html">Diary</a></li>
-        </ul>
-      </nav>
+  <body>
+    <header class="bg-surface sticky top-0 z-10">
+      <div
+        class="max-w-page mx-auto flex px-6 py-4 justify-between items-center"
+      >
+        <a href="index.html">
+          <h1 class="text-h2">Movie Diary</h1>
+        </a>
+        <nav>
+          <ul class="flex gap-6">
+            <li><a href="index.html" class="nav-link">Discover</a></li>
+            <li>
+              <a href="diary.html" class="nav-link text-text-primary">Diary</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <main>
-      <section>
-        <h2>My Movie Diary</h2>
-        <div id="diary-container"></div>
+    <main class="flex-1">
+      <section class="max-w-page mx-auto px-6 py-8">
+        <h2 class="text-h1 mb-4">My Movie Diary</h2>
+        <div
+          id="diary-container"
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        ></div>
       </section>
+
+      <template id="movie-card-template">
+        <article class="movie-card h-full flex flex-col">
+          <img class="movie-card__poster w-full aspect-[2/3] object-cover" />
+          <div class="p-4 space-y-2 flex flex-col flex-1">
+            <h3 class="movie-card__title text-h2 line-clamp-2"></h3>
+            <div class="flex items-center gap-2 text-small text-text-secondary">
+              <span class="movie-card__year"></span>
+              <span class="movie-card__rating text-cine"></span>
+            </div>
+            <div class="movie-card__genres flex flex-wrap gap-1"></div>
+            <p
+              class="movie-card__description text-small text-text-muted line-clamp-3 flex-1"
+            ></p>
+            <div class="movie-card__actions space-y-2 mt-auto pt-2"></div>
+          </div>
+        </article>
+      </template>
     </main>
-    <footer></footer>
+    <footer
+      class="max-w-page mx-auto w-full px-6 py-8 text-center text-small text-text-muted"
+    >
+      <p>© 2026 Movie Diary · Data provided by TMDB</p>
+    </footer>
     <script type="module" src="js/diary.js"></script>
   </body>
 </html>

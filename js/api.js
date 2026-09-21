@@ -1,14 +1,14 @@
 import { TMDB_TOKEN } from "./config.js";
 
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${TMDB_TOKEN}`,
+  },
+};
 export async function getPopularMovies() {
   try {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${TMDB_TOKEN}`,
-      },
-    };
     const response = await fetch(
       "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
       options,
@@ -27,13 +27,6 @@ export async function getPopularMovies() {
 
 export async function getMovieGenres() {
   try {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${TMDB_TOKEN}`,
-      },
-    };
     const response = await fetch(
       "https://api.themoviedb.org/3/genre/movie/list?language=en",
       options,
@@ -52,13 +45,6 @@ export async function getMovieGenres() {
 
 export async function getSearchMovies(query) {
   try {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${TMDB_TOKEN}`,
-      },
-    };
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}&include_adult=false&language=en-US&page=1`,
       options,
